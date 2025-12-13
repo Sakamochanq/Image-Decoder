@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Source));
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.StatusBar = new System.Windows.Forms.StatusStrip();
+            this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.ファイルFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenButton = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,26 +44,41 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.RunHexEditorButton = new System.Windows.Forms.ToolStripMenuItem();
             this.OffsetsListView = new System.Windows.Forms.ListView();
-            this.pictureBox = new System.Windows.Forms.PictureBox();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.statusStrip1.SuspendLayout();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
+            this.PictureBoxMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.RSaveImageButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.ClearButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.oToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.GrayscaleButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.ReverseButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.SepiatoneButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.histgramButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
+            this.StatusBar.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
+            this.PictureBoxMenu.SuspendLayout();
             this.SuspendLayout();
             // 
-            // statusStrip1
+            // StatusBar
             // 
-            this.statusStrip1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.StatusBar.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.StatusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.StatusLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 306);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(561, 22);
-            this.statusStrip1.TabIndex = 0;
-            this.statusStrip1.Text = "statusStrip1";
+            this.StatusBar.Location = new System.Drawing.Point(0, 306);
+            this.StatusBar.Name = "StatusBar";
+            this.StatusBar.Size = new System.Drawing.Size(561, 22);
+            this.StatusBar.TabIndex = 0;
+            this.StatusBar.Text = "statusStrip1";
+            // 
+            // StatusLabel
+            // 
+            this.StatusLabel.Name = "StatusLabel";
+            this.StatusLabel.Size = new System.Drawing.Size(23, 17);
+            this.StatusLabel.Text = "OK";
             // 
             // menuStrip1
             // 
@@ -101,6 +118,7 @@
             | System.Windows.Forms.Keys.S)));
             this.SaveImageButton.Size = new System.Drawing.Size(218, 22);
             this.SaveImageButton.Text = "Save as Image";
+            this.SaveImageButton.Click += new System.EventHandler(this.SaveImageButton_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -129,20 +147,20 @@
             // 
             this.UndoButton.Name = "UndoButton";
             this.UndoButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.UndoButton.Size = new System.Drawing.Size(143, 22);
+            this.UndoButton.Size = new System.Drawing.Size(180, 22);
             this.UndoButton.Text = "Undo";
             // 
             // RedoButton
             // 
             this.RedoButton.Name = "RedoButton";
             this.RedoButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-            this.RedoButton.Size = new System.Drawing.Size(143, 22);
+            this.RedoButton.Size = new System.Drawing.Size(180, 22);
             this.RedoButton.Text = "Redo";
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(140, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(177, 6);
             // 
             // RunHexEditorButton
             // 
@@ -166,17 +184,6 @@
             this.OffsetsListView.View = System.Windows.Forms.View.Details;
             this.OffsetsListView.SelectedIndexChanged += new System.EventHandler(this.OffsetListView_SelectedIndexChanged);
             // 
-            // pictureBox
-            // 
-            this.pictureBox.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox.BackgroundImage")));
-            this.pictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox.Location = new System.Drawing.Point(271, 36);
-            this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(275, 258);
-            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox.TabIndex = 3;
-            this.pictureBox.TabStop = false;
-            // 
             // columnHeader1
             // 
             this.columnHeader1.Text = "OFFSETS";
@@ -192,11 +199,89 @@
             this.columnHeader3.Text = "BYTES";
             this.columnHeader3.Width = 70;
             // 
-            // StatusLabel
+            // pictureBox
             // 
-            this.StatusLabel.Name = "StatusLabel";
-            this.StatusLabel.Size = new System.Drawing.Size(23, 17);
-            this.StatusLabel.Text = "OK";
+            this.pictureBox.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox.BackgroundImage")));
+            this.pictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox.ContextMenuStrip = this.PictureBoxMenu;
+            this.pictureBox.Location = new System.Drawing.Point(271, 36);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(275, 258);
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox.TabIndex = 3;
+            this.pictureBox.TabStop = false;
+            // 
+            // PictureBoxMenu
+            // 
+            this.PictureBoxMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.RSaveImageButton,
+            this.ClearButton,
+            this.toolStripMenuItem3,
+            this.oToolStripMenuItem});
+            this.PictureBoxMenu.Name = "contextMenuStrip1";
+            this.PictureBoxMenu.Size = new System.Drawing.Size(205, 98);
+            // 
+            // RSaveImageButton
+            // 
+            this.RSaveImageButton.Name = "RSaveImageButton";
+            this.RSaveImageButton.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.S)));
+            this.RSaveImageButton.Size = new System.Drawing.Size(204, 22);
+            this.RSaveImageButton.Text = "Save Image";
+            this.RSaveImageButton.Click += new System.EventHandler(this.RSaveImageButton_Click);
+            // 
+            // ClearButton
+            // 
+            this.ClearButton.Name = "ClearButton";
+            this.ClearButton.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.C)));
+            this.ClearButton.Size = new System.Drawing.Size(204, 22);
+            this.ClearButton.Text = "Clear";
+            this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
+            // 
+            // oToolStripMenuItem
+            // 
+            this.oToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.GrayscaleButton,
+            this.ReverseButton,
+            this.SepiatoneButton,
+            this.histgramButton});
+            this.oToolStripMenuItem.Name = "oToolStripMenuItem";
+            this.oToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.oToolStripMenuItem.Text = "Image Edit";
+            // 
+            // GrayscaleButton
+            // 
+            this.GrayscaleButton.Name = "GrayscaleButton";
+            this.GrayscaleButton.Size = new System.Drawing.Size(193, 22);
+            this.GrayscaleButton.Text = "Grayscale";
+            this.GrayscaleButton.Click += new System.EventHandler(this.GrayscaleButton_Click);
+            // 
+            // ReverseButton
+            // 
+            this.ReverseButton.Name = "ReverseButton";
+            this.ReverseButton.Size = new System.Drawing.Size(193, 22);
+            this.ReverseButton.Text = "Reverse";
+            this.ReverseButton.Click += new System.EventHandler(this.ReverseButton_Click);
+            // 
+            // SepiatoneButton
+            // 
+            this.SepiatoneButton.Name = "SepiatoneButton";
+            this.SepiatoneButton.Size = new System.Drawing.Size(193, 22);
+            this.SepiatoneButton.Text = "Sepiatone";
+            this.SepiatoneButton.Click += new System.EventHandler(this.SepiatoneButton_Click);
+            // 
+            // histgramButton
+            // 
+            this.histgramButton.Name = "histgramButton";
+            this.histgramButton.Size = new System.Drawing.Size(193, 22);
+            this.histgramButton.Text = "HistogramEqualization";
+            this.histgramButton.Click += new System.EventHandler(this.histgramButton_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(201, 6);
             // 
             // Source
             // 
@@ -206,7 +291,7 @@
             this.ClientSize = new System.Drawing.Size(561, 328);
             this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.OffsetsListView);
-            this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.StatusBar);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
@@ -214,11 +299,12 @@
             this.Name = "Source";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Image-Decoder   |   Sakamochanq";
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
+            this.StatusBar.ResumeLayout(false);
+            this.StatusBar.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
+            this.PictureBoxMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -226,7 +312,7 @@
 
         #endregion
 
-        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.StatusStrip StatusBar;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem ファイルFToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem OpenButton;
@@ -244,6 +330,15 @@
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ToolStripStatusLabel StatusLabel;
+        private System.Windows.Forms.ContextMenuStrip PictureBoxMenu;
+        private System.Windows.Forms.ToolStripMenuItem RSaveImageButton;
+        private System.Windows.Forms.ToolStripMenuItem ClearButton;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem oToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem GrayscaleButton;
+        private System.Windows.Forms.ToolStripMenuItem ReverseButton;
+        private System.Windows.Forms.ToolStripMenuItem SepiatoneButton;
+        private System.Windows.Forms.ToolStripMenuItem histgramButton;
     }
 }
 

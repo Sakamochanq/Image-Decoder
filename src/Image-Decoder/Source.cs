@@ -1,4 +1,5 @@
-﻿using Image_Decoder.forms;
+﻿using Image_Decoder.common;
+using Image_Decoder.forms;
 using Image_Decoder.utils;
 using System;
 using System.Collections.Generic;
@@ -93,6 +94,66 @@ namespace Image_Decoder
             {
                 HexEditor.ShowDialog();
             }
+        }
+
+        private void SaveImageButton_Click(object sender, EventArgs e)
+        {
+            if (OffsetsListView.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Please select an image segment from the list.", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var png = (Segment)OffsetsListView.SelectedItems[0].Tag;
+            byte[] imageBytes = new byte[png.Length];
+            Array.Copy(LoadedData, png.StartOffset, imageBytes, 0, png.Length);
+
+            using (var sfd = new SaveFileDialog() { Filter = "PNG Files（*.png） | *.png; | All Files（*.) | *.*;" })
+            {
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        File.WriteAllBytes(sfd.FileName, imageBytes);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error saving image {ex.Message}", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+        private void RSaveImageButton_Click(object sender, EventArgs e)
+        {
+            SaveImageButton_Click(sender, e);
+        }
+
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            pictureBox.Image = null;
+        }
+
+        ImageEdit IE = new ImageEdit();
+
+        private void GrayscaleButton_Click(object sender, EventArgs e)
+        {
+            pictureBox.Image = IE.GrayScale(pictureBox.Image);
+        }
+
+        private void ReverseButton_Click(object sender, EventArgs e)
+        {
+            pictureBox.Image = IE.Reverse(pictureBox.Image);
+        }
+
+        private void SepiatoneButton_Click(object sender, EventArgs e)
+        {
+            pictureBox.Image = IE.SepiaTone(pictureBox.Image);
+        }
+
+        private void histgramButton_Click(object sender, EventArgs e)
+        {
+            pictureBox.Image = IE.HistogramEqualization(pictureBox.Image);
         }
     }
 }
