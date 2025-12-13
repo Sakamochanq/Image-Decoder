@@ -147,8 +147,9 @@
             // RunHexEditorButton
             // 
             this.RunHexEditorButton.Name = "RunHexEditorButton";
-            this.RunHexEditorButton.Size = new System.Drawing.Size(143, 22);
+            this.RunHexEditorButton.Size = new System.Drawing.Size(180, 22);
             this.RunHexEditorButton.Text = "Hex Editor";
+            this.RunHexEditorButton.Click += new System.EventHandler(this.RunHexEditorButton_Click);
             // 
             // OffsetsListView
             // 

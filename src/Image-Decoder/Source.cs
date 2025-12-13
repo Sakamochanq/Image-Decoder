@@ -1,4 +1,5 @@
-﻿using Image_Decoder.utils;
+﻿using Image_Decoder.forms;
+using Image_Decoder.utils;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -20,6 +21,9 @@ namespace Image_Decoder
         // 読み込んだデータの格納先
         byte[] LoadedData;
 
+        // 元ファイル
+        string originFile;
+
         Binary bin = new Binary();
 
         private void OpenButton_Click(object sender, System.EventArgs e)
@@ -28,6 +32,7 @@ namespace Image_Decoder
             {
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
+                    originFile = ofd.FileName;
                     LoadedData = File.ReadAllBytes(ofd.FileName);
                     List<Segment> pngs = bin.SearchSignature(LoadedData);
 
@@ -79,6 +84,14 @@ namespace Image_Decoder
                 {
                     StatusLabel.Text = ex.Message;
                 }
+            }
+        }
+
+        private void RunHexEditorButton_Click(object sender, EventArgs e)
+        {
+            using (var HexEditor = new HexEditor(originFile))
+            {
+                HexEditor.ShowDialog();
             }
         }
     }
