@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Source));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.ファイルFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenButton = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,8 +41,12 @@
             this.RedoButton = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.RunHexEditorButton = new System.Windows.Forms.ToolStripMenuItem();
-            this.OffsetListView = new System.Windows.Forms.ListView();
+            this.OffsetsListView = new System.Windows.Forms.ListView();
             this.pictureBox = new System.Windows.Forms.PictureBox();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
@@ -59,12 +62,6 @@
             this.statusStrip1.Size = new System.Drawing.Size(561, 22);
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
-            // 
-            // StatusLabel
-            // 
-            this.StatusLabel.Name = "StatusLabel";
-            this.StatusLabel.Size = new System.Drawing.Size(23, 17);
-            this.StatusLabel.Text = "OK";
             // 
             // menuStrip1
             // 
@@ -153,27 +150,52 @@
             this.RunHexEditorButton.Size = new System.Drawing.Size(143, 22);
             this.RunHexEditorButton.Text = "Hex Editor";
             // 
-            // OffsetListView
+            // OffsetsListView
             // 
-            this.OffsetListView.HideSelection = false;
-            this.OffsetListView.Location = new System.Drawing.Point(12, 36);
-            this.OffsetListView.Name = "OffsetListView";
-            this.OffsetListView.Size = new System.Drawing.Size(163, 258);
-            this.OffsetListView.TabIndex = 2;
-            this.OffsetListView.UseCompatibleStateImageBehavior = false;
-            this.OffsetListView.View = System.Windows.Forms.View.List;
-            this.OffsetListView.SelectedIndexChanged += new System.EventHandler(this.OffsetListView_SelectedIndexChanged);
+            this.OffsetsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+            this.OffsetsListView.HideSelection = false;
+            this.OffsetsListView.Location = new System.Drawing.Point(12, 36);
+            this.OffsetsListView.Name = "OffsetsListView";
+            this.OffsetsListView.Size = new System.Drawing.Size(253, 258);
+            this.OffsetsListView.TabIndex = 2;
+            this.OffsetsListView.UseCompatibleStateImageBehavior = false;
+            this.OffsetsListView.View = System.Windows.Forms.View.Details;
+            this.OffsetsListView.SelectedIndexChanged += new System.EventHandler(this.OffsetListView_SelectedIndexChanged);
             // 
             // pictureBox
             // 
             this.pictureBox.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox.BackgroundImage")));
             this.pictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox.Location = new System.Drawing.Point(189, 36);
+            this.pictureBox.Location = new System.Drawing.Point(271, 36);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(357, 258);
+            this.pictureBox.Size = new System.Drawing.Size(275, 258);
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox.TabIndex = 3;
             this.pictureBox.TabStop = false;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "OFFSETS";
+            this.columnHeader1.Width = 80;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "IEND";
+            this.columnHeader2.Width = 80;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "BYTES";
+            this.columnHeader3.Width = 70;
+            // 
+            // StatusLabel
+            // 
+            this.StatusLabel.Name = "StatusLabel";
+            this.StatusLabel.Size = new System.Drawing.Size(23, 17);
+            this.StatusLabel.Text = "OK";
             // 
             // Source
             // 
@@ -182,7 +204,7 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(561, 328);
             this.Controls.Add(this.pictureBox);
-            this.Controls.Add(this.OffsetListView);
+            this.Controls.Add(this.OffsetsListView);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -210,14 +232,17 @@
         private System.Windows.Forms.ToolStripMenuItem SaveImageButton;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem ExitButton;
-        private System.Windows.Forms.ToolStripStatusLabel StatusLabel;
         private System.Windows.Forms.ToolStripMenuItem editEToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem UndoButton;
         private System.Windows.Forms.ToolStripMenuItem RedoButton;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem RunHexEditorButton;
-        private System.Windows.Forms.ListView OffsetListView;
+        private System.Windows.Forms.ListView OffsetsListView;
         private System.Windows.Forms.PictureBox pictureBox;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ToolStripStatusLabel StatusLabel;
     }
 }
 

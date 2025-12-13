@@ -1,8 +1,12 @@
 ﻿using Image_Decoder.utils;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+
+using static Image_Decoder.utils.Binary;
+
 
 namespace Image_Decoder
 {
@@ -12,12 +16,6 @@ namespace Image_Decoder
         {
             InitializeComponent();
         }
-
-        // PNGのシグネチャ
-        byte[] pngSig = new byte[] { 0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A };
-
-        // PNGのIENDチャンク
-        byte[] pngIEND = new byte[] { 0x49, 0x45, 0x4E, 0x44, 0xAE, 0x42, 0x60, 0x82 };
 
         // 読み込んだデータの格納先
         byte[] LoadedData;
@@ -31,15 +29,29 @@ namespace Image_Decoder
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
                     LoadedData = File.ReadAllBytes(ofd.FileName);
+                    List<Segment> pngs = bin.SearchSignature(LoadedData);
 
                     try
                     {
+                        // クリア
+                        OffsetsListView.Items.Clear();
+
                         // シグネチャを検索
-                        OffsetListView.Items.Add(bin.SearchSignature(LoadedData, pngSig));
+                        foreach (var png in pngs)
+                        {
+                            ListViewItem item = new ListViewItem(png.StartHex);
+
+                            item.SubItems.Add(png.EndHex);
+                            item.SubItems.Add($"{png.Length} bytes");
+
+                            item.Tag = png;
+
+                            OffsetsListView.Items.Add(item);
+                        }
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message);
+                        StatusLabel.Text = ex.Message;
                     }
                 }
             }
@@ -47,43 +59,25 @@ namespace Image_Decoder
 
         private void OffsetListView_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (OffsetListView.SelectedItems == null)
+            if (OffsetsListView.SelectedItems.Count == 0)
             {
                 return;
             }
 
-            // OFFSETの抽出
-            string SELECTED_OFFSET = OffsetListView.SelectedItems.ToString();
+            var png = (Segment)OffsetsListView.SelectedItems[0].Tag;
 
-            string HEX_OFFSET = SELECTED_OFFSET.Split(':')[1].Trim();
+            byte[] imageBytes = new byte[png.Length];
+            Array.Copy(LoadedData, png.StartOffset, imageBytes, 0, png.Length);
 
-            int OFFSET = Convert.ToInt32(HEX_OFFSET, 16);
-
-            
-            int IEND = bin.SearchByte(LoadedData, pngIEND, OFFSET);
-            if (IEND == -1)
-            {
-                MessageBox.Show("NOT FOUND IT!");
-                return;
-            }
-
-            // バイナリから画像の抽出
-            int pngLength = (IEND - OFFSET) + pngIEND.Length;
-
-            // 画像の切り出し
-            byte[] pngData = new byte[pngLength];
-            Buffer.BlockCopy(LoadedData, OFFSET, pngData, 0, pngLength);
-
-            // PictureBoxへ表示
-            using (var ms = new MemoryStream(pngData))
+            using (var ms = new MemoryStream(imageBytes))
             {
                 try
                 {
-                    pictureBox.Image = new Bitmap(ms);
+                    pictureBox.Image = Image.FromStream(ms);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    StatusLabel.Text = ex.Message;
                 }
             }
         }
