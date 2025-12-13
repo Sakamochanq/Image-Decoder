@@ -95,6 +95,7 @@
             this.OpenButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
             this.OpenButton.Size = new System.Drawing.Size(218, 22);
             this.OpenButton.Text = "Open";
+            this.OpenButton.Click += new System.EventHandler(this.OpenButton_Click);
             // 
             // SaveImageButton
             // 
@@ -160,6 +161,8 @@
             this.OffsetListView.Size = new System.Drawing.Size(163, 258);
             this.OffsetListView.TabIndex = 2;
             this.OffsetListView.UseCompatibleStateImageBehavior = false;
+            this.OffsetListView.View = System.Windows.Forms.View.List;
+            this.OffsetListView.SelectedIndexChanged += new System.EventHandler(this.OffsetListView_SelectedIndexChanged);
             // 
             // pictureBox
             // 
