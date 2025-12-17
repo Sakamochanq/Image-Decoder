@@ -30,15 +30,18 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.ファイルFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaveAsButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.CloseButton = new System.Windows.Forms.ToolStripMenuItem();
-            this.HexTextBox = new System.Windows.Forms.TextBox();
             this.searchSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SearchpngSigButton = new System.Windows.Forms.ToolStripMenuItem();
-            this.SaveAsButton = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.HexTextBox = new System.Windows.Forms.RichTextBox();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.SearchUpButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.SearchDownButton = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -65,47 +68,6 @@
             this.ファイルFToolStripMenuItem.Size = new System.Drawing.Size(93, 20);
             this.ファイルFToolStripMenuItem.Text = "Analyze（&N）";
             // 
-            // CloseButton
-            // 
-            this.CloseButton.Name = "CloseButton";
-            this.CloseButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.CloseButton.Size = new System.Drawing.Size(185, 22);
-            this.CloseButton.Text = "Close";
-            // 
-            // HexTextBox
-            // 
-            this.HexTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.HexTextBox.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.HexTextBox.Location = new System.Drawing.Point(12, 36);
-            this.HexTextBox.Multiline = true;
-            this.HexTextBox.Name = "HexTextBox";
-            this.HexTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.HexTextBox.Size = new System.Drawing.Size(472, 318);
-            this.HexTextBox.TabIndex = 3;
-            // 
-            // searchSToolStripMenuItem
-            // 
-            this.searchSToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.searchToolStripMenuItem});
-            this.searchSToolStripMenuItem.Name = "searchSToolStripMenuItem";
-            this.searchSToolStripMenuItem.Size = new System.Drawing.Size(84, 20);
-            this.searchSToolStripMenuItem.Text = "Search（&S）";
-            // 
-            // searchToolStripMenuItem
-            // 
-            this.searchToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.SearchpngSigButton});
-            this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
-            this.searchToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.searchToolStripMenuItem.Text = "Poke";
-            // 
-            // SearchpngSigButton
-            // 
-            this.SearchpngSigButton.Name = "SearchpngSigButton";
-            this.SearchpngSigButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.P)));
-            this.SearchpngSigButton.Size = new System.Drawing.Size(180, 22);
-            this.SearchpngSigButton.Text = "PNG";
-            // 
             // SaveAsButton
             // 
             this.SaveAsButton.Name = "SaveAsButton";
@@ -119,6 +81,40 @@
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             this.toolStripMenuItem3.Size = new System.Drawing.Size(182, 6);
+            // 
+            // CloseButton
+            // 
+            this.CloseButton.Name = "CloseButton";
+            this.CloseButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
+            this.CloseButton.Size = new System.Drawing.Size(185, 22);
+            this.CloseButton.Text = "Close";
+            // 
+            // searchSToolStripMenuItem
+            // 
+            this.searchSToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.searchToolStripMenuItem});
+            this.searchSToolStripMenuItem.Name = "searchSToolStripMenuItem";
+            this.searchSToolStripMenuItem.Size = new System.Drawing.Size(84, 20);
+            this.searchSToolStripMenuItem.Text = "Search（&S）";
+            // 
+            // searchToolStripMenuItem
+            // 
+            this.searchToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SearchpngSigButton,
+            this.toolStripMenuItem1,
+            this.SearchUpButton,
+            this.SearchDownButton});
+            this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
+            this.searchToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.searchToolStripMenuItem.Text = "Poke";
+            // 
+            // SearchpngSigButton
+            // 
+            this.SearchpngSigButton.Name = "SearchpngSigButton";
+            this.SearchpngSigButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.P)));
+            this.SearchpngSigButton.Size = new System.Drawing.Size(180, 22);
+            this.SearchpngSigButton.Text = "PNG";
+            this.SearchpngSigButton.Click += new System.EventHandler(this.SearchpngSigButton_Click);
             // 
             // statusStrip1
             // 
@@ -137,13 +133,44 @@
             this.StatusLabel.Size = new System.Drawing.Size(23, 17);
             this.StatusLabel.Text = "OK";
             // 
+            // HexTextBox
+            // 
+            this.HexTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.HexTextBox.Location = new System.Drawing.Point(12, 36);
+            this.HexTextBox.Name = "HexTextBox";
+            this.HexTextBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
+            this.HexTextBox.Size = new System.Drawing.Size(472, 318);
+            this.HexTextBox.TabIndex = 5;
+            this.HexTextBox.Text = "";
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
+            // 
+            // SearchUpButton
+            // 
+            this.SearchUpButton.Name = "SearchUpButton";
+            this.SearchUpButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.U)));
+            this.SearchUpButton.Size = new System.Drawing.Size(180, 22);
+            this.SearchUpButton.Text = "UP";
+            this.SearchUpButton.Click += new System.EventHandler(this.SearchUpButton_Click);
+            // 
+            // SearchDownButton
+            // 
+            this.SearchDownButton.Name = "SearchDownButton";
+            this.SearchDownButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.W)));
+            this.SearchDownButton.Size = new System.Drawing.Size(180, 22);
+            this.SearchDownButton.Text = "DOWN";
+            this.SearchDownButton.Click += new System.EventHandler(this.SearchDownButton_Click);
+            // 
             // HexEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(496, 390);
-            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.HexTextBox);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -165,7 +192,6 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem ファイルFToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem CloseButton;
-        private System.Windows.Forms.TextBox HexTextBox;
         private System.Windows.Forms.ToolStripMenuItem searchSToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem searchToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem SaveAsButton;
@@ -173,5 +199,9 @@
         private System.Windows.Forms.ToolStripMenuItem SearchpngSigButton;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel StatusLabel;
+        private System.Windows.Forms.RichTextBox HexTextBox;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem SearchUpButton;
+        private System.Windows.Forms.ToolStripMenuItem SearchDownButton;
     }
 }
