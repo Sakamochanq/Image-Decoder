@@ -36,12 +36,12 @@
             this.searchSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SearchpngSigButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.SearchUpButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.SearchDownButton = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.HexTextBox = new System.Windows.Forms.RichTextBox();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.SearchUpButton = new System.Windows.Forms.ToolStripMenuItem();
-            this.SearchDownButton = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -92,7 +92,10 @@
             // searchSToolStripMenuItem
             // 
             this.searchSToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.searchToolStripMenuItem});
+            this.searchToolStripMenuItem,
+            this.toolStripMenuItem2,
+            this.SearchUpButton,
+            this.SearchDownButton});
             this.searchSToolStripMenuItem.Name = "searchSToolStripMenuItem";
             this.searchSToolStripMenuItem.Size = new System.Drawing.Size(84, 20);
             this.searchSToolStripMenuItem.Text = "Search（&S）";
@@ -100,10 +103,7 @@
             // searchToolStripMenuItem
             // 
             this.searchToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.SearchpngSigButton,
-            this.toolStripMenuItem1,
-            this.SearchUpButton,
-            this.SearchDownButton});
+            this.SearchpngSigButton});
             this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
             this.searchToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.searchToolStripMenuItem.Text = "Poke";
@@ -112,9 +112,30 @@
             // 
             this.SearchpngSigButton.Name = "SearchpngSigButton";
             this.SearchpngSigButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.P)));
-            this.SearchpngSigButton.Size = new System.Drawing.Size(180, 22);
+            this.SearchpngSigButton.Size = new System.Drawing.Size(135, 22);
             this.SearchpngSigButton.Text = "PNG";
             this.SearchpngSigButton.Click += new System.EventHandler(this.SearchpngSigButton_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(177, 6);
+            // 
+            // SearchUpButton
+            // 
+            this.SearchUpButton.Name = "SearchUpButton";
+            this.SearchUpButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.U)));
+            this.SearchUpButton.Size = new System.Drawing.Size(180, 22);
+            this.SearchUpButton.Text = "UP";
+            this.SearchUpButton.Click += new System.EventHandler(this.SearchUpButton_Click);
+            // 
+            // SearchDownButton
+            // 
+            this.SearchDownButton.Name = "SearchDownButton";
+            this.SearchDownButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.W)));
+            this.SearchDownButton.Size = new System.Drawing.Size(180, 22);
+            this.SearchDownButton.Text = "DOWN";
+            this.SearchDownButton.Click += new System.EventHandler(this.SearchDownButton_Click);
             // 
             // statusStrip1
             // 
@@ -142,27 +163,6 @@
             this.HexTextBox.Size = new System.Drawing.Size(472, 318);
             this.HexTextBox.TabIndex = 5;
             this.HexTextBox.Text = "";
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
-            // 
-            // SearchUpButton
-            // 
-            this.SearchUpButton.Name = "SearchUpButton";
-            this.SearchUpButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.U)));
-            this.SearchUpButton.Size = new System.Drawing.Size(180, 22);
-            this.SearchUpButton.Text = "UP";
-            this.SearchUpButton.Click += new System.EventHandler(this.SearchUpButton_Click);
-            // 
-            // SearchDownButton
-            // 
-            this.SearchDownButton.Name = "SearchDownButton";
-            this.SearchDownButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.W)));
-            this.SearchDownButton.Size = new System.Drawing.Size(180, 22);
-            this.SearchDownButton.Text = "DOWN";
-            this.SearchDownButton.Click += new System.EventHandler(this.SearchDownButton_Click);
             // 
             // HexEditor
             // 
@@ -200,7 +200,7 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel StatusLabel;
         private System.Windows.Forms.RichTextBox HexTextBox;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem SearchUpButton;
         private System.Windows.Forms.ToolStripMenuItem SearchDownButton;
     }
