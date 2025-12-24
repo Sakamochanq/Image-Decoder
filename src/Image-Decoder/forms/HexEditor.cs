@@ -37,7 +37,7 @@ namespace Image_Decoder.forms
 
                 HexTextBox.Text = sb.ToString();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Please load the object.", hexeditor, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
@@ -54,7 +54,7 @@ namespace Image_Decoder.forms
                         File.WriteAllText(sfd.FileName, HexTextBox.Text);
                         MessageBox.Show("File saved successfully.", hexeditor, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         MessageBox.Show($"Error saving file", hexeditor, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
