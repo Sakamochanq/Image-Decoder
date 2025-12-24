@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Threading;
 using System.Windows.Forms;
 
 using static Image_Decoder.utils.Binary;
@@ -37,6 +38,11 @@ namespace Image_Decoder
                     LoadedData = File.ReadAllBytes(ofd.FileName);
                     List<Segment> pngs = bin.SearchSignature(LoadedData);
 
+                    this.Text = $"Image Decoder   |   {originFile}";
+
+                    StatusLabel.Text = "Searching for PNG signatures...";
+                    Application.DoEvents();
+
                     try
                     {
                         // クリア
@@ -53,12 +59,16 @@ namespace Image_Decoder
                             item.Tag = png;
 
                             OffsetsListView.Items.Add(item);
+
+                            StatusLabel.Text = $"Found {pngs.Count} PNG image(s).";
                         }
                     }
                     catch (Exception ex)
                     {
                         StatusLabel.Text = ex.Message;
+
                     }
+                    waitTimer.Start();
                 }
             }
         }
@@ -80,11 +90,14 @@ namespace Image_Decoder
                 try
                 {
                     pictureBox.Image = Image.FromStream(ms);
+
+                    StatusLabel.Text = $"Displaying image at offset {png.StartHex} - {png.EndHex} ({png.Length} bytes).";
                 }
                 catch (Exception ex)
                 {
                     StatusLabel.Text = ex.Message;
                 }
+                waitTimer.Start();
             }
         }
 
@@ -154,6 +167,12 @@ namespace Image_Decoder
         private void histgramButton_Click(object sender, EventArgs e)
         {
             pictureBox.Image = IE.HistogramEqualization(pictureBox.Image);
+        }
+
+        private void waitTimer_Tick(object sender, EventArgs e)
+        {
+            StatusLabel.Text = "OK";
+            waitTimer.Stop();
         }
     }
 }

@@ -51,12 +51,13 @@
             this.PictureBoxMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.RSaveImageButton = new System.Windows.Forms.ToolStripMenuItem();
             this.ClearButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.oToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.GrayscaleButton = new System.Windows.Forms.ToolStripMenuItem();
             this.ReverseButton = new System.Windows.Forms.ToolStripMenuItem();
             this.SepiatoneButton = new System.Windows.Forms.ToolStripMenuItem();
             this.histgramButton = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
+            this.waitTimer = new System.Windows.Forms.Timer(this.components);
             this.StatusBar.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
@@ -219,7 +220,7 @@
             this.toolStripMenuItem3,
             this.oToolStripMenuItem});
             this.PictureBoxMenu.Name = "contextMenuStrip1";
-            this.PictureBoxMenu.Size = new System.Drawing.Size(205, 98);
+            this.PictureBoxMenu.Size = new System.Drawing.Size(205, 76);
             // 
             // RSaveImageButton
             // 
@@ -238,6 +239,11 @@
             this.ClearButton.Size = new System.Drawing.Size(204, 22);
             this.ClearButton.Text = "Clear";
             this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(201, 6);
             // 
             // oToolStripMenuItem
             // 
@@ -278,10 +284,10 @@
             this.histgramButton.Text = "HistogramEqualization";
             this.histgramButton.Click += new System.EventHandler(this.histgramButton_Click);
             // 
-            // toolStripMenuItem3
+            // waitTimer
             // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(201, 6);
+            this.waitTimer.Interval = 5000;
+            this.waitTimer.Tick += new System.EventHandler(this.waitTimer_Tick);
             // 
             // Source
             // 
@@ -339,6 +345,7 @@
         private System.Windows.Forms.ToolStripMenuItem ReverseButton;
         private System.Windows.Forms.ToolStripMenuItem SepiatoneButton;
         private System.Windows.Forms.ToolStripMenuItem histgramButton;
+        private System.Windows.Forms.Timer waitTimer;
     }
 }
 
